@@ -1,4 +1,7 @@
 <template>
+  <div>
+    <!-- <img src="./assets/logo.png" alt="" style="max-width:50px"> -->
+  </div>
   <banner/>
 
   <!-- <div class="black-bg" v-if="proView==true">
@@ -10,8 +13,15 @@
       <button v-on:click="proView=false">닫기</button>
     </div>
   </div> -->
-  <modal :product="product" :proView="proView" :proNum = "proNum"
-   @modalClose="proView=false"/>
+
+  <!-- <div class="start" :class="{end:proView}"> -->
+
+    <transition name="show">
+      <modal :product="product" :proView="proView" :proNum = "proNum"
+       @modalClose="proView=false"/>
+    </transition>
+  <!-- </div> -->
+
 
 
 
@@ -73,4 +83,15 @@ export default {
     width: 80%;background:#fff;border-radius: 5px;
     padding:20px
   }
+  .start{opacity:0;transition:1s}
+  .start.end{opacity:1}
+  /* .show-enter-from{opacity:0;transform:translateY(1000px)}
+  .show-enter-active{transition:0.3s}
+  .show-enter-to{opacity:1;transform:translateY(0);} */
+  /* .show-leave-from{opacity:1}
+  .show-leave-active{transition:0.3s}
+  .show-leave-to{opacity:0} */
+  .show-enter-from,.show-leave-to{opacity:0;transform:translateY(1000px)}
+  .show-enter-active,.show-leave-active{transition:0.8s}
+  .show-enter-to,.show-leave-from{opacity:1;transform:translateY(0);}
 </style>
